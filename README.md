@@ -88,3 +88,20 @@ npm run build
 ```
 
 `npm run dev` запускает локальный dev-сервер Vite.
+
+## GitHub Pages
+
+Проект подготовлен к деплою на GitHub Pages через GitHub Actions.
+
+Workflow находится в `.github/workflows/deploy-pages.yml`. При push в ветку
+`main` он устанавливает зависимости, запускает `npm run build`, загружает папку
+`dist` как Pages artifact и публикует ее.
+
+Для корректных путей на GitHub Pages в `vite.config.ts` используется production
+base:
+
+```ts
+base: command === "build" ? "/pixi-mechanics/" : "/";
+```
+
+Локально проект продолжает открываться от корня dev-сервера.
